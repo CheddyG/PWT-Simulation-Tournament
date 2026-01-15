@@ -1,18 +1,17 @@
 import os
 import subprocess
 import time
+import sys
 
-# Make sure Tour100 exists
-os.makedirs("Tour100", exist_ok=True)
+# Directory where this script lives (probably .../PWT-Simulation-Tournament/Data)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-EXPECTED_BATTLES = 72 #(73 * 72) // 2  # 2628
+# Output directory (will be created inside the same folder as this script)
+OUTPUT_DIR = os.path.join(BASE_DIR, "TestOutput")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+EXPECTED_BATTLES = 1  # or 2628 for full 73-trainer tournament
 MAX_ITERATIONS = 100
-
-def get_latest_output_number(base_dir="Tour100", base_name="output", extension=".txt"):
-    i = 1
-    while os.path.exists(os.path.join(base_dir, f"{base_name}{i}{extension}")):
-        i += 1
-    return i - 1
 
 def is_output_valid(path, min_battles):
     if not os.path.exists(path):
@@ -22,17 +21,27 @@ def is_output_valid(path, min_battles):
     return content.count("]]]]]\n") >= min_battles
 
 def run_simulation_script(output_path):
-    print(f"🔁 Running tournament iteration: {output_path}")
-    subprocess.run(["python3", "runSimulations.py", output_path])
+    print(f"🔁 Running tournament iteration, output -> {output_path}")
+
+    # Path to runSimulations.py (assumes it's in the same folder as this script)
+    run_sim_path = os.path.join(BASE_DIR, "runSimulations.py")
+
+    # Use the SAME Python that is running this script
+    subprocess.run(
+        [sys.executable, run_sim_path, output_path],
+        check=False  # set True if you want it to crash on error
+    )
 
 def main_loop():
-    base_dir = "Tour100"
     base_name = "output"
     extension = ".txt"
 
-    current_iteration = 0  # Start from output81.txt
+    current_iteration = 0
     while current_iteration < MAX_ITERATIONS:
-        next_output_file = os.path.join(base_dir, f"{base_name}{current_iteration + 1}{extension}")
+        next_output_file = os.path.join(
+            OUTPUT_DIR,
+            f"{base_name}{current_iteration + 1}{extension}"
+        )
 
         if not is_output_valid(next_output_file, EXPECTED_BATTLES):
             print(f"⛔ {next_output_file} missing or incomplete (< {EXPECTED_BATTLES} battles). Retrying simulation...")
@@ -46,4 +55,3 @@ def main_loop():
 
 if __name__ == "__main__":
     main_loop()
-
