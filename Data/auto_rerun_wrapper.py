@@ -7,11 +7,11 @@ import sys
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Output directory (will be created inside the same folder as this script)
-OUTPUT_DIR = os.path.join(BASE_DIR, "TestOutput")
+OUTPUT_DIR = os.path.join(BASE_DIR, "Tour100")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 EXPECTED_BATTLES = 1  # or 2628 for full 73-trainer tournament
-MAX_ITERATIONS = 1
+MAX_ITERATIONS = 100
 
 def is_output_valid(path, min_battles):
     if not os.path.exists(path):

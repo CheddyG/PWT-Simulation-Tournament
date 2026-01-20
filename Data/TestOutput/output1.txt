@@ -1,0 +1,422 @@
+[[[[[
+Alder vs Alder
+|t:|1768898130
+|gametype|singles
+|player|p1|Bot 1||
+|player|p2|Bot 2||
+|teamsize|p1|6
+|teamsize|p2|6
+|gen|5
+|tier|[Gen 5] Custom Game
+|clearpoke
+|poke|p1|Volcarona, L50, F|item
+|poke|p1|Conkeldurr, L50, F|item
+|poke|p1|Reuniclus, L50, M|item
+|poke|p1|Krookodile, L50, F|item
+|poke|p1|Chandelure, L50, F|item
+|poke|p1|Braviary, L50, M|item
+|poke|p2|Volcarona, L50, M|item
+|poke|p2|Conkeldurr, L50, M|item
+|poke|p2|Reuniclus, L50, F|item
+|poke|p2|Krookodile, L50, M|item
+|poke|p2|Chandelure, L50, F|item
+|poke|p2|Braviary, L50, M|item
+|teampreview
+|
+|t:|1768898130
+|start
+|switch|p1a: Volcarona|Volcarona, L50, F|160/160
+|switch|p2a: Volcarona|Volcarona, L50, M|160/160
+|turn|1
+|
+|t:|1768898130
+|move|p1a: Volcarona|Heat Wave|p2a: Volcarona
+|-damage|p2a: Volcarona|84/160
+|move|p2a: Volcarona|Heat Wave|p1a: Volcarona
+|-damage|p1a: Volcarona|82/160
+|
+|upkeep
+|turn|2
+|
+|t:|1768898130
+|switch|p1a: Reuniclus|Reuniclus, L50, M|185/185
+|switch|p2a: Reuniclus|Reuniclus, L50, F|185/185
+|
+|upkeep
+|turn|3
+|
+|t:|1768898130
+|move|p2a: Reuniclus|Light Screen|p2a: Reuniclus
+|-sidestart|p2: Bot 2|move: Light Screen
+|move|p1a: Reuniclus|Light Screen|p1a: Reuniclus
+|-sidestart|p1: Bot 1|move: Light Screen
+|
+|upkeep
+|turn|4
+|
+|t:|1768898130
+|move|p1a: Reuniclus|Toxic|p2a: Reuniclus
+|-status|p2a: Reuniclus|tox
+|move|p2a: Reuniclus|Toxic|p1a: Reuniclus
+|-status|p1a: Reuniclus|tox
+|
+|debug|damage event failed
+|debug|damage event failed
+|upkeep
+|turn|5
+|
+|t:|1768898130
+|move|p2a: Reuniclus|Psychic|p1a: Reuniclus
+|-resisted|p1a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p1a: Reuniclus|166/185 tox
+|move|p1a: Reuniclus|Psychic|p2a: Reuniclus
+|-resisted|p2a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p2a: Reuniclus|165/185 tox
+|
+|-heal|p2a: Reuniclus|176/185 tox|[from] item: Leftovers
+|-heal|p1a: Reuniclus|177/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|upkeep
+|turn|6
+|
+|t:|1768898130
+|switch|p2a: Conkeldurr|Conkeldurr, L50, M|180/180
+|move|p1a: Reuniclus|Psychic|p2a: Conkeldurr
+|-supereffective|p2a: Conkeldurr
+|debug|Light Screen weaken
+|-damage|p2a: Conkeldurr|90/180
+|
+|-heal|p1a: Reuniclus|185/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|upkeep
+|turn|7
+|
+|t:|1768898130
+|switch|p2a: Reuniclus|Reuniclus, L50, F|176/185 tox
+|move|p1a: Reuniclus|Toxic|p2a: Reuniclus
+|-fail|p2a: Reuniclus|tox
+|debug|move failed because it did nothing
+|
+|-heal|p2a: Reuniclus|185/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|-sideend|p2: Bot 2|move: Light Screen
+|-sideend|p1: Bot 1|move: Light Screen
+|upkeep
+|turn|8
+|
+|t:|1768898130
+|move|p1a: Reuniclus|Reflect|p1a: Reuniclus
+|-sidestart|p1: Bot 1|Reflect
+|move|p2a: Reuniclus|Light Screen|p2a: Reuniclus
+|-sidestart|p2: Bot 2|move: Light Screen
+|
+|debug|damage event failed
+|debug|damage event failed
+|upkeep
+|turn|9
+|
+|t:|1768898130
+|switch|p1a: Conkeldurr|Conkeldurr, L50, F|180/180
+|move|p2a: Reuniclus|Psychic|p1a: Conkeldurr
+|-supereffective|p1a: Conkeldurr
+|-damage|p1a: Conkeldurr|0 fnt
+|faint|p1a: Conkeldurr
+|
+|debug|damage event failed
+|upkeep
+|
+|t:|1768898130
+|switch|p1a: Reuniclus|Reuniclus, L50, M|185/185 tox
+|turn|10
+|
+|t:|1768898130
+|move|p2a: Reuniclus|Psychic|p1a: Reuniclus
+|-resisted|p1a: Reuniclus
+|-damage|p1a: Reuniclus|147/185 tox
+|move|p1a: Reuniclus|Light Screen|p1a: Reuniclus
+|-sidestart|p1: Bot 1|move: Light Screen
+|
+|-heal|p1a: Reuniclus|158/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|upkeep
+|turn|11
+|
+|t:|1768898130
+|move|p1a: Reuniclus|Psychic|p2a: Reuniclus
+|-resisted|p2a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p2a: Reuniclus|167/185 tox
+|-unboost|p2a: Reuniclus|spd|1
+|move|p2a: Reuniclus|Psychic|p1a: Reuniclus
+|-resisted|p1a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p1a: Reuniclus|139/185 tox
+|
+|-heal|p2a: Reuniclus|178/185 tox|[from] item: Leftovers
+|-heal|p1a: Reuniclus|150/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|upkeep
+|turn|12
+|
+|t:|1768898130
+|switch|p1a: Braviary|Braviary, L50, M|175/175
+|move|p2a: Reuniclus|Psychic|p1a: Braviary
+|debug|Light Screen weaken
+|-damage|p1a: Braviary|133/175
+|
+|-heal|p2a: Reuniclus|185/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|-sideend|p1: Bot 1|Reflect
+|-sideend|p2: Bot 2|move: Light Screen
+|upkeep
+|turn|13
+|
+|t:|1768898130
+|move|p1a: Braviary|U-turn|p2a: Reuniclus
+|-supereffective|p2a: Reuniclus
+|-damage|p2a: Reuniclus|55/185 tox
+|
+|t:|1768898130
+|switch|p1a: Krookodile|Krookodile, L50, F|170/170|[from] U-turn
+|move|p2a: Reuniclus|Reflect|p2a: Reuniclus
+|-sidestart|p2: Bot 2|Reflect
+|
+|-heal|p2a: Reuniclus|66/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|upkeep
+|turn|14
+|
+|t:|1768898130
+|switch|p1a: Reuniclus|Reuniclus, L50, M|150/185 tox
+|move|p2a: Reuniclus|Psychic|p1a: Reuniclus
+|-resisted|p1a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p1a: Reuniclus|131/185 tox
+|
+|-heal|p1a: Reuniclus|142/185 tox|[from] item: Leftovers
+|-heal|p2a: Reuniclus|77/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|-sideend|p1: Bot 1|move: Light Screen
+|upkeep
+|turn|15
+|
+|t:|1768898130
+|move|p2a: Reuniclus|Light Screen|p2a: Reuniclus
+|-sidestart|p2: Bot 2|move: Light Screen
+|move|p1a: Reuniclus|Light Screen|p1a: Reuniclus
+|-sidestart|p1: Bot 1|move: Light Screen
+|
+|-heal|p2a: Reuniclus|88/185 tox|[from] item: Leftovers
+|-heal|p1a: Reuniclus|153/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|upkeep
+|turn|16
+|
+|t:|1768898130
+|move|p2a: Reuniclus|Psychic|p1a: Reuniclus
+|-resisted|p1a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p1a: Reuniclus|134/185 tox
+|move|p1a: Reuniclus|Psychic|p2a: Reuniclus
+|-resisted|p2a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p2a: Reuniclus|57/185 tox
+|
+|-heal|p2a: Reuniclus|68/185 tox|[from] item: Leftovers
+|-heal|p1a: Reuniclus|145/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|upkeep
+|turn|17
+|
+|t:|1768898130
+|move|p1a: Reuniclus|Psychic|p2a: Reuniclus
+|-resisted|p2a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p2a: Reuniclus|40/185 tox
+|move|p2a: Reuniclus|Psychic|p1a: Reuniclus
+|-resisted|p1a: Reuniclus
+|debug|Light Screen weaken
+|-damage|p1a: Reuniclus|128/185 tox
+|
+|-heal|p2a: Reuniclus|51/185 tox|[from] item: Leftovers
+|-heal|p1a: Reuniclus|139/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|debug|damage event failed
+|-sideend|p2: Bot 2|Reflect
+|upkeep
+|turn|18
+|
+|t:|1768898130
+|switch|p1a: Krookodile|Krookodile, L50, F|170/170
+|move|p2a: Reuniclus|Psychic|p1a: Krookodile
+|-immune|p1a: Krookodile
+|
+|-heal|p2a: Reuniclus|62/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|upkeep
+|turn|19
+|
+|t:|1768898130
+|move|p1a: Krookodile|Crunch|p2a: Reuniclus
+|-supereffective|p2a: Reuniclus
+|-damage|p2a: Reuniclus|0 fnt
+|faint|p2a: Reuniclus
+|-ability|p1a: Krookodile|Moxie|boost
+|-boost|p1a: Krookodile|atk|1
+|
+|-sideend|p2: Bot 2|move: Light Screen
+|-sideend|p1: Bot 1|move: Light Screen
+|upkeep
+|
+|t:|1768898130
+|switch|p2a: Braviary|Braviary, L50, M|175/175
+|turn|20
+|
+|t:|1768898130
+|switch|p2a: Krookodile|Krookodile, L50, M|170/170
+|move|p1a: Krookodile|Crunch|p2a: Krookodile
+|-resisted|p2a: Krookodile
+|-damage|p2a: Krookodile|117/170
+|
+|upkeep
+|turn|21
+|
+|t:|1768898130
+|move|p2a: Krookodile|Crunch|p1a: Krookodile
+|-resisted|p1a: Krookodile
+|-damage|p1a: Krookodile|131/170
+|move|p1a: Krookodile|Earthquake|p2a: Krookodile
+|-damage|p2a: Krookodile|0 fnt
+|faint|p2a: Krookodile
+|-ability|p1a: Krookodile|Moxie|boost
+|-boost|p1a: Krookodile|atk|1
+|
+|upkeep
+|
+|t:|1768898130
+|switch|p2a: Braviary|Braviary, L50, M|175/175
+|turn|22
+|
+|t:|1768898130
+|move|p1a: Krookodile|Crunch|p2a: Braviary
+|-damage|p2a: Braviary|30/175
+|move|p2a: Braviary|Rock Slide|p1a: Krookodile
+|-resisted|p1a: Krookodile
+|-damage|p1a: Krookodile|84/170
+|
+|upkeep
+|turn|23
+|
+|t:|1768898130
+|move|p1a: Krookodile|Earthquake|p2a: Braviary
+|-immune|p2a: Braviary
+|move|p2a: Braviary|Rock Slide|p1a: Krookodile
+|-resisted|p1a: Krookodile
+|-damage|p1a: Krookodile|34/170
+|
+|upkeep
+|turn|24
+|
+|t:|1768898130
+|switch|p2a: Chandelure|Chandelure, L50, F|135/135
+|move|p1a: Krookodile|Earthquake|p2a: Chandelure
+|-supereffective|p2a: Chandelure
+|-damage|p2a: Chandelure|0 fnt
+|faint|p2a: Chandelure
+|-ability|p1a: Krookodile|Moxie|boost
+|-boost|p1a: Krookodile|atk|1
+|
+|upkeep
+|
+|t:|1768898130
+|switch|p2a: Conkeldurr|Conkeldurr, L50, M|90/180
+|turn|25
+|
+|t:|1768898130
+|switch|p1a: Reuniclus|Reuniclus, L50, M|139/185 tox
+|move|p2a: Conkeldurr|Payback|p1a: Reuniclus
+|debug|Payback NOT boosted
+|-supereffective|p1a: Reuniclus
+|-damage|p1a: Reuniclus|53/185 tox
+|-damage|p2a: Conkeldurr|72/180|[from] item: Life Orb
+|
+|-heal|p1a: Reuniclus|64/185 tox|[from] item: Leftovers
+|debug|damage event failed
+|upkeep
+|turn|26
+|
+|t:|1768898130
+|move|p2a: Conkeldurr|Payback|p1a: Reuniclus
+|debug|Payback NOT boosted
+|-supereffective|p1a: Reuniclus
+|-damage|p1a: Reuniclus|0 fnt
+|faint|p1a: Reuniclus
+|-damage|p2a: Conkeldurr|54/180|[from] item: Life Orb
+|
+|upkeep
+|
+|t:|1768898130
+|switch|p1a: Chandelure|Chandelure, L50, F|135/135
+|turn|27
+|
+|t:|1768898130
+|switch|p1a: Braviary|Braviary, L50, M|133/175
+|switch|p2a: Volcarona|Volcarona, L50, M|84/160
+|
+|upkeep
+|turn|28
+|
+|t:|1768898130
+|move|p2a: Volcarona|Quiver Dance|p2a: Volcarona
+|-boost|p2a: Volcarona|spa|1
+|-boost|p2a: Volcarona|spd|1
+|-boost|p2a: Volcarona|spe|1
+|move|p1a: Braviary|Brave Bird|p2a: Volcarona
+|-supereffective|p2a: Volcarona
+|-damage|p2a: Volcarona|0 fnt
+|faint|p2a: Volcarona
+|-damage|p1a: Braviary|105/175|[from] Recoil
+|
+|upkeep
+|
+|t:|1768898130
+|switch|p2a: Conkeldurr|Conkeldurr, L50, M|54/180
+|turn|29
+|
+|t:|1768898130
+|switch|p1a: Chandelure|Chandelure, L50, F|135/135
+|move|p2a: Conkeldurr|Hammer Arm|p1a: Chandelure
+|-immune|p1a: Chandelure
+|
+|upkeep
+|turn|30
+|
+|t:|1768898130
+|switch|p2a: Braviary|Braviary, L50, M|30/175
+|move|p1a: Chandelure|Psychic|p2a: Braviary
+|-damage|p2a: Braviary|0 fnt
+|faint|p2a: Braviary
+|
+|upkeep
+|
+|t:|1768898130
+|switch|p2a: Conkeldurr|Conkeldurr, L50, M|54/180
+|turn|31
+|
+|t:|1768898130
+|move|p1a: Chandelure|Psychic|p2a: Conkeldurr
+|-supereffective|p2a: Conkeldurr
+|-damage|p2a: Conkeldurr|0 fnt
+|faint|p2a: Conkeldurr
+|
+|win|Bot 1
+]]]]]
