@@ -56,7 +56,7 @@ def get_keys_from_value(d, val):
 
 # ============ Main Execution ============
 filename = "Inputs/GymLeaderPokemon.txt"
-noOfThreads = 12
+noOfThreads = 6
 
 with open('Inputs/tournament_battles.json', 'r') as infile:
     teams = json.load(infile)

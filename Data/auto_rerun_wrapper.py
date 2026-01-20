@@ -11,7 +11,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "TestOutput")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 EXPECTED_BATTLES = 1  # or 2628 for full 73-trainer tournament
-MAX_ITERATIONS = 100
+MAX_ITERATIONS = 1
 
 def is_output_valid(path, min_battles):
     if not os.path.exists(path):
