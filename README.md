@@ -2,7 +2,7 @@
 
 Built upon the foundation laid by [CRZShadows](https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator), this project expands and personalizes the tournament simulation concept with added parsing tools, and analytics.
 
-This is my first project so please understand taht if yall see something that doesn't make sense.
+This is my first project! Let me know if something doesn't add up!
 
 This project extends [Pokémon Showdown](https://github.com/smogon/pokemon-showdown) with custom AI, ranking models, and powerful statistical analysis tools. It is designed to run, parse, and evaluate tens of thousands of battles programmatically.
 
@@ -125,4 +125,5 @@ PWT-Simulation-Tournament/
 - Animated replays w/ trainer cards and battle stats
 - Support for Multiple Generations
 - Eventually battle bot
+
 
