@@ -3,6 +3,12 @@ import subprocess
 import time
 import sys
 
+
+
+
+
+
+
 # Directory where this script lives (probably .../PWT-Simulation-Tournament/Data)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
