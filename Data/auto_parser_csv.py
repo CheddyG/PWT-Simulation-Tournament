@@ -7,7 +7,7 @@ from parsing.bradley_terry import run_bt_matrix
 from parsing.rank_pipeline import run_full_ranking_pipeline
 
 # Define folders
-output_folder = "TestOutput"
+output_folder = "Tour100"
 parsed_output_folder = "ParsedOutputs"
 os.makedirs(parsed_output_folder, exist_ok=True)
 
