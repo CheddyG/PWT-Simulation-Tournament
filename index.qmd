@@ -1,0 +1,377 @@
+## Introduction 
+Hello everyone! My name is Edgar Gonzalez Martinez and welcome to my first Data Science project. 
+This project is an analysis of over 250,000 Pokemon Battles in a round robin style tournament from the strongest Trainers, Gym Leaders and Champions from Pokemon B2W2 (especially the PWT). 
+I'll give a basic overview of Pokemon and then include a much more involved analysis as I go!
+
+### What is Pokemon and how do you play?
+
+Pokemon is a turn based strategy game where trainers battle using teams of six Pokemon. Each Pokemon has different stats, types, and moves, so team success depends on factors like offensive power, defensive coverage, speed, and matchup advantages. 
+It's a complicaed turn based game of rock, paper, scissors. That makes it a good setting for simulation and comparative analysis, since different teams can be tested repeatedly under the same rules.
+
+
+## The Simulation 
+This projects uses [cRz-Shadows' Pokemon Trainer Tournament Simulator](https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator) (huge thanks to them!) to automate battles in a specified sequence making it ideal for large analysis. This simulator makes use of the Pokemon Showdown engine and uses pipelines and threading to accelerate the speed at which it can be done. The setup is that it takes two trainer teams with equal heuristic based AI's and sequentially battles them and outputs the results as txt file.
+ I simultaed a 73 trainer round-robin tournament and battled each matchup 100 times. That means that every trainer battled every other trainer a total of 100 times. Which if you do the math is a total of 262,800 battles! From there, we are able to parse the battle logs for data analysis as wells as to view them. Here's an example of the txt converted to html like Pokemon Showdown, check out the classic battle below! 
+
+<iframe src="Data/Tour100/battles_html/Blue_vs_Red.html" 
+        width="100%" 
+        height="600px" 
+        style="border: 1px solid #ccc; border-radius: 8px;">
+</iframe>
+
+If you've played Pokemon before, you can see the AI seems to be a bit simple. However, in order to rank the battles teams themselves we needed an equal playing field that didn't cater too much to one strategy (Hyper Offense vs Stall) so this AI is pretty good with respect to that. Furthermore, its important to know that all else being equal we are ranking the teams themselves and we will run tests about what exactly makes a great team.
+
+### The Trainers
+
+The tournament includes 73 trainer teams taken from some of the strongest battles in Pokemon Black 2 and White 2. Rather than using random in-game opponents, I focused on major trainers whose teams are meant to represent high-level battles within the game.
+
+The field includes Champions, Elite Four members, Gym Leaders from the Pokemon World Tournament, rivals, and other notable postgame opponents. When multiple versions of a trainer existed, I used the strongest available team for this project (Hard Mode).
+
+To make the field easier to understand, the 73 trainers can be grouped:
+
+#### **Champions and top-level opponents** 
+- **Champions:** Blue, Lance, Steven, Wallace, Cynthia, Alder, Red, and Iris.
+
+#### **Elite Four members** 
+- **Elite Four** - Marshal,
+Caitlin,
+Grimsley and
+Shauntal.
+
+
+#### **Gym Leaders**
+- **Kanto** - Brock,
+Misty,
+Lt. Surge,
+Erika,
+Janine,
+Sabrina,
+Blaine,
+Giovanni.
+
+- **Johto** - Falkner,
+Bugsy,
+Whitney,
+Morty,
+Chuck,
+Jasmine,
+Pryce,
+Claire.
+
+- **Hoenn** - Roxanne,
+Brawly,
+Wattson,
+Flannery,
+Norman,
+Winona,
+Tate,
+Liza,
+Juan.
+
+- **Sinnoh** - Roark,
+Gardenia,
+Fantina,
+Maylene,
+Wake,
+Byron,
+Candice,
+Volkner.
+
+- **Unova** - Cheren,
+Roxie,
+Burgh,
+Elesa,
+Clay,
+Skyla,
+Drayden,
+Marlon,
+Chili,
+Cress,
+Cilan,
+Lenora,
+Brycen,
+Lenora,
+Brycen,
+Bianca.
+
+#### **Rivals and special trainers** 
+- **Misc. Trainers** - Colress, Nishino, 
+Morimoto, 
+N (Spring),
+N (Summer),
+N (Autumn),
+N (Winter),
+Cheren (Fire),
+Cheren (Water),
+Cheren (Grass),
+Benga,
+Hugh (Fire),
+Hugh (Water)
+and
+Hugh (Grass).
+
+
+This mix gives the tournament a wide range of team styles, from balanced champion teams to more specialized gym leader rosters.
+This allows us to explore more trends in the analysis as well as make sure we have notable trainers. 
+
+## Results
+
+### Top 10 Trainers by Elo
+
+![](Data/top10_elo_bar.png){width="100%"}
+
+These are the resulting Top 10 from the tournament. From here we can see notable champions and high rankers, however above them is the best performing trainer was Shauntal, the Ghost Typer Elite Four.  
+
+### Trainers Cards
+The trainer cards below have been given a few things. First they have been givena Rank from S to C. I ranked them using an algorithm based on an Elo (Ability Score) that was assigned based on the wins and losses of the trainers. Furthermorethey of course have their Placement in the tournament, from 1 to 73, as well their toughest matchup and easiest. The W/L stand for Win/Loss ratio. Check it out!. 
+
+::: {.panel-tabset}
+
+## Rank S Trainers
+::: {style="text-align: center;"}
+
+### Shauntal
+![](Data/youtube/Output/Shauntal_card.webp)
+
+### Misty
+![](Data/youtube/Output/Misty_card.webp)
+
+### Janine
+![](Data/youtube/Output/Janine_card.webp)
+
+### Alder
+![](Data/youtube/Output/Alder_card.webp)
+
+### Morty
+![](Data/youtube/Output/Morty_card.webp)
+
+### Giovanni
+![](Data/youtube/Output/Giovanni_card.webp)
+
+:::
+
+## Rank A Trainers
+::: {style="text-align: center;"}
+
+### Lance
+![](Data/youtube/Output/Lance_card.webp)
+
+### N_Autumn
+![](Data/youtube/Output/N_Autumn_card.webp)
+
+### Skyla
+![](Data/youtube/Output/Skyla_card.webp)
+
+### Wallace
+![](Data/youtube/Output/Wallace_card.webp)
+
+### Elesa
+![](Data/youtube/Output/Elesa_card.webp)
+
+### Clay
+![](Data/youtube/Output/Clay_card.webp)
+
+### N_Spring
+![](Data/youtube/Output/N_Spring_card.webp)
+
+### Jasmine
+![](Data/youtube/Output/Jasmine_card.webp)
+
+### Red
+![](Data/youtube/Output/Red_card.webp)
+
+### Cynthia
+![](Data/youtube/Output/Cynthia_card.webp)
+
+### Sabrina
+![](Data/youtube/Output/Sabrina_card.webp)
+
+### Grimsley
+![](Data/youtube/Output/Grimsley_card.webp)
+
+### Candice
+![](Data/youtube/Output/Candice_card.webp)
+
+### Brawly
+![](Data/youtube/Output/Brawly_card.webp)
+
+### Hugh_Fire
+![](Data/youtube/Output/Hugh_Fire_card.webp)
+
+### Norman
+![](Data/youtube/Output/Norman_card.webp)
+
+### Marshal
+![](Data/youtube/Output/Marshal_card.webp)
+
+### Nishino
+![](Data/youtube/Output/Nishino_card.webp)
+
+### Benga
+![](Data/youtube/Output/Benga_card.webp)
+
+### Wattson
+![](Data/youtube/Output/Wattson_card.webp)
+
+### N_Winter
+![](Data/youtube/Output/N_Winter_card.webp)
+
+### Iris
+![](Data/youtube/Output/Iris_card.webp)
+
+### Blue
+![](Data/youtube/Output/Blue_card.webp)
+
+:::
+## Rank B Trainers
+::: {style="text-align: center;"}
+
+### Brock
+![](Data/youtube/Output/Brock_card.webp)
+
+### Cheren
+![](Data/youtube/Output/Cheren_card.webp)
+
+### Roxie
+![](Data/youtube/Output/Roxie_card.webp)
+
+### Flannery
+![](Data/youtube/Output/Flannery_card.webp)
+
+### Blaine
+![](Data/youtube/Output/Blaine_card.webp)
+
+### Hugh_Water
+![](Data/youtube/Output/Hugh_Water_card.webp)
+
+### Cress
+![](Data/youtube/Output/Cress_card.webp)
+
+### Lt.Surge
+![](Data/youtube/Output/Lt.Surge_card.webp)
+
+### Burgh
+![](Data/youtube/Output/Burgh_card.webp)
+
+### Juan
+![](Data/youtube/Output/Juan_card.webp)
+
+### Erika
+![](Data/youtube/Output/Erika_card.webp)
+
+### Gardenia
+![](Data/youtube/Output/Gardenia_card.webp)
+
+### Marlon
+![](Data/youtube/Output/Marlon_card.webp)
+
+### Bugsy
+![](Data/youtube/Output/Bugsy_card.webp)
+
+### Chuck
+![](Data/youtube/Output/Chuck_card.webp)
+
+### Whitney
+![](Data/youtube/Output/Whitney_card.webp)
+
+### Hugh_Grass
+![](Data/youtube/Output/Hugh_Grass_card.webp)
+
+### Drayden
+![](Data/youtube/Output/Drayden_card.webp)
+
+### Lenora
+![](Data/youtube/Output/Lenora_card.webp)
+
+### Pryce
+![](Data/youtube/Output/Pryce_card.webp)
+
+### Clair
+![](Data/youtube/Output/Clair_card.webp)
+
+### Bianca
+![](Data/youtube/Output/Bianca_card.webp)
+
+### Cheren_Fire
+![](Data/youtube/Output/Cheren_Fire_card.webp)
+
+### Maylene
+![](Data/youtube/Output/Maylene_card.webp)
+
+### Wake
+![](Data/youtube/Output/Wake_card.webp)
+
+### Fantina
+![](Data/youtube/Output/Fantina_card.webp)
+
+:::
+
+## Rank C Trainers
+::: {style="text-align: center;"}
+
+### Steven
+![](Data/youtube/Output/Steven_card.webp)
+
+### Cheren_Water
+![](Data/youtube/Output/Cheren_Water_card.webp)
+
+### Winona
+![](Data/youtube/Output/Winona_card.webp)
+
+### N_Summer
+![](Data/youtube/Output/N_Summer_card.webp)
+
+### Volkner
+![](Data/youtube/Output/Volkner_card.webp)
+
+### Caitlin
+![](Data/youtube/Output/Caitlin_card.webp)
+
+### Cheren_Grass
+![](Data/youtube/Output/Cheren_Grass_card.webp)
+
+### Liza
+![](Data/youtube/Output/Liza_card.webp)
+
+### Brycen
+![](Data/youtube/Output/Brycen_card.webp)
+
+### Chili
+![](Data/youtube/Output/Chili_card.webp)
+
+### Tate
+![](Data/youtube/Output/Tate_card.webp)
+
+### Byron
+![](Data/youtube/Output/Byron_card.webp)
+
+### Roxanne
+![](Data/youtube/Output/Roxanne_card.webp)
+
+### Colress
+![](Data/youtube/Output/Colress_card.webp)
+
+### Roark
+![](Data/youtube/Output/Roark_card.webp)
+
+### Morimoto
+![](Data/youtube/Output/Morimoto_card.webp)
+
+### Cilan
+![](Data/youtube/Output/Cilan_card.webp)
+
+:::
+:::
+
+
+![](Data/all_trainers_elo_scatter.png){width="100%"}
+
+![](Data/analysis/pca_pc1_pc2.png){width="100%"}
+
+
+![](Data/analysis/ability_vs_unique_move_types.png){width="100%"}
+
+![](Data/analysis/story_bulk_quadratic.png){width="100%"}
+
+![](Data/analysis/top2_coefficients.png){width="100%"}
+

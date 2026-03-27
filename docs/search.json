@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "manual.html",
+    "href": "manual.html",
+    "title": "Requirements and Installation",
+    "section": "",
+    "text": "Python (tested on version 3.10.12, buy any python 3 version SHOULD suffice)\n\nI would recommend installing anaconda, a package manager for python. This will help with managing your libraries and versions.\nYou should follow this tutorial to install anaconda and you should make sure to do the optional “How to Add Anaconda to Path” part. This will add python as a path variable too.\nMake sure running python --version in the terminal gives you the python version number before continuing\n\nNode.js (tested on node version 21.1.0 / npm version 8.10.2, but any SHOULD suffice)\n\nYou should also add Node.js as a path variable, the installer should do this, but if not it is the same process as anaconda above.\nMake sure running node --version in the terminal gives you the Node.js version number before continuing\n\nThe following python libraries:\n\njson\nitertools\nre\ncollections\nmatplotlib\nnumpy\nPIL\ncsv\nsubprocess\nthreading\ntime\ntimeit\n\nTo install these, if you have anaconda, you can start anaconda prompt and run the commands:\n\npip install matplotlib\npip install numpy\npip install Pillow\nThe rest are standard libraries and are included with python\n\nInstall Git.\nIf you do not already have a preferred text editor installed, I recommend installing either VS Code or Notepad++.\n\n\n\n\n\nOpen command prompt/your native terminal, and use the cd command to navigate to wherever you want to place the repository.\nRun git clone --recursive https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator to download the repository.\nYou can alternatively use this direct link to download a zip file of the repository, but make sure you understand how to navigate the terminal with cd.\nnow run cd Pokemon_Trainer_Tournament_Simulator/pokemon-showdown to enter pokemon showdown.\nHere you should run npm install pokemon-showdown and node build. This will compile pokemon showdown. If this fails for whatever reason, consult the Pokemon Showdown Command-line Tools Documentation\nEverything should now be compiled\nnow run cd ../Data to enter the Data directory."
+  },
+  {
+    "objectID": "manual.html#requirements",
+    "href": "manual.html#requirements",
+    "title": "Requirements and Installation",
+    "section": "",
+    "text": "Python (tested on version 3.10.12, buy any python 3 version SHOULD suffice)\n\nI would recommend installing anaconda, a package manager for python. This will help with managing your libraries and versions.\nYou should follow this tutorial to install anaconda and you should make sure to do the optional “How to Add Anaconda to Path” part. This will add python as a path variable too.\nMake sure running python --version in the terminal gives you the python version number before continuing\n\nNode.js (tested on node version 21.1.0 / npm version 8.10.2, but any SHOULD suffice)\n\nYou should also add Node.js as a path variable, the installer should do this, but if not it is the same process as anaconda above.\nMake sure running node --version in the terminal gives you the Node.js version number before continuing\n\nThe following python libraries:\n\njson\nitertools\nre\ncollections\nmatplotlib\nnumpy\nPIL\ncsv\nsubprocess\nthreading\ntime\ntimeit\n\nTo install these, if you have anaconda, you can start anaconda prompt and run the commands:\n\npip install matplotlib\npip install numpy\npip install Pillow\nThe rest are standard libraries and are included with python\n\nInstall Git.\nIf you do not already have a preferred text editor installed, I recommend installing either VS Code or Notepad++."
+  },
+  {
+    "objectID": "manual.html#downloadclone-the-repository-and-basic-setup",
+    "href": "manual.html#downloadclone-the-repository-and-basic-setup",
+    "title": "Requirements and Installation",
+    "section": "",
+    "text": "Open command prompt/your native terminal, and use the cd command to navigate to wherever you want to place the repository.\nRun git clone --recursive https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator to download the repository.\nYou can alternatively use this direct link to download a zip file of the repository, but make sure you understand how to navigate the terminal with cd.\nnow run cd Pokemon_Trainer_Tournament_Simulator/pokemon-showdown to enter pokemon showdown.\nHere you should run npm install pokemon-showdown and node build. This will compile pokemon showdown. If this fails for whatever reason, consult the Pokemon Showdown Command-line Tools Documentation\nEverything should now be compiled\nnow run cd ../Data to enter the Data directory."
+  },
+  {
+    "objectID": "manual.html#edit-the-teams",
+    "href": "manual.html#edit-the-teams",
+    "title": "Requirements and Installation",
+    "section": "Edit the teams",
+    "text": "Edit the teams\n\nYou will find two files inside of Data/Inputs/, these being GymLeaderPokemon.txt and GymLeaderTeams.json.\n\nGymLeaderPokemon.txt contains a list of Pokemon builds in Pokemon Showdown Export Format, each with a | character placed in front of the pokemon species to separate each build. You can add more builds to this file by exporting builds from the pokemon showdown team builder or damage calculator, then adding the | deliminator in front of the pokemon species. See GymLeaderPokemon.txt for example formatting.\nGymLeaderTeams.json contains a map of trainer names to teams. Each pokemon in a team is a 2 element list of species, and the line number from GymLeaderPokemon.txt in which the first line of that build appears."
+  },
+  {
+    "objectID": "manual.html#buildbattles.py",
+    "href": "manual.html#buildbattles.py",
+    "title": "Requirements and Installation",
+    "section": "BuildBattles.py",
+    "text": "BuildBattles.py\n\nNavigating to Data/, we see BuildBattles.py. This file takes in our pokemon trainer teams from before, and creates matchups for each combination. You can modify this to build battles in whatever way you like if you do not want all combinations. You can change the number of times each matchup is run by changing the RUN_N_TIMES variable - this is set to 1 by default."
+  },
+  {
+    "objectID": "manual.html#runsimulations.py",
+    "href": "manual.html#runsimulations.py",
+    "title": "Requirements and Installation",
+    "section": "runSimulations.py",
+    "text": "runSimulations.py\n\nNavigating to Data/ we see runSimulations.py. This file takes our json file of matchups we created using BuildBattles.py, and uses multithreading to run them as fast as possible. You should change the variable noOfThreads on line 61 to something that will suit your CPU. Running a ryzen 9 7950X, 50 threads seemed to be the sweet spot for me, but I would recommend starting small and upping it to what your CPU can handle."
+  },
+  {
+    "objectID": "manual.html#visualising-the-output",
+    "href": "manual.html#visualising-the-output",
+    "title": "Requirements and Installation",
+    "section": "Visualising The Output",
+    "text": "Visualising The Output\n\nThere are three main ways to visualise the output. The simplest way is by opening output.txt inside of the Data/ directory. If you are running a large set of simulations, this file will be massive and be difficult to search through, so we have a few other methods of analysis.\nparseOutput.py parses output.txt and produces a png file in the same directory containing a matrix of results.\nparseOutput_CSV.py does the same thing, however prodices a CSV file of results rather than an png of a matrix."
+  },
+  {
+    "objectID": "manual.html#error-handling---if-any-appear",
+    "href": "manual.html#error-handling---if-any-appear",
+    "title": "Requirements and Installation",
+    "section": "Error handling - if any appear",
+    "text": "Error handling - if any appear\n\nIf any battles encounter an error midway through (this can sometimes happen with showdown simulator battles if the ai does something stupid due to a bug or oversight), you can navigate to the Data/ErrorChecking/ directory, which contains three files to find any errors in the file, make a list of any battles which need rerun due to those errors, and remove battles with errors. These should be run in that order if required."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "",
+    "section": "",
+    "text": "Hello everyone! My name is Edgar Gonzalez Martinez and welcome to my first Data Science project. This project is an analysis of over 250,000 Pokemon Battles in a round robin style tournament from the strongest Trainers, Gym Leaders and Champions from Pokemon B2W2 (especially the PWT). I’ll give a basic overview of Pokemon and then include a much more involved analysis as I go!\n\n\nPokemon is a turn based strategy game where trainers battle using teams of six Pokemon. Each Pokemon has different stats, types, and moves, so team success depends on factors like offensive power, defensive coverage, speed, and matchup advantages. It’s a complicaed turn based game of rock, paper, scissors. That makes it a good setting for simulation and comparative analysis, since different teams can be tested repeatedly under the same rules."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "",
+    "section": "",
+    "text": "Hello everyone! My name is Edgar Gonzalez Martinez and welcome to my first Data Science project. This project is an analysis of over 250,000 Pokemon Battles in a round robin style tournament from the strongest Trainers, Gym Leaders and Champions from Pokemon B2W2 (especially the PWT). I’ll give a basic overview of Pokemon and then include a much more involved analysis as I go!\n\n\nPokemon is a turn based strategy game where trainers battle using teams of six Pokemon. Each Pokemon has different stats, types, and moves, so team success depends on factors like offensive power, defensive coverage, speed, and matchup advantages. It’s a complicaed turn based game of rock, paper, scissors. That makes it a good setting for simulation and comparative analysis, since different teams can be tested repeatedly under the same rules."
+  },
+  {
+    "objectID": "index.html#the-simulation",
+    "href": "index.html#the-simulation",
+    "title": "",
+    "section": "The Simulation",
+    "text": "The Simulation\nThis projects uses cRz-Shadows’ Pokemon Trainer Tournament Simulator (huge thanks to them!) to automate battles in a specified sequence making it ideal for large analysis. This simulator makes use of the Pokemon Showdown engine and uses pipelines and threading to accelerate the speed at which it can be done. The setup is that it takes two trainer teams with equal heuristic based AI’s and sequentially battles them and outputs the results as txt file. I simultaed a 73 trainer round-robin tournament and battled each matchup 100 times. That means that every trainer battled every other trainer a total of 100 times. Which if you do the math is a total of 262,800 battles! From there, we are able to parse the battle logs for data analysis as wells as to view them. Here’s an example of the txt converted to html like Pokemon Showdown, check out the classic battle below!\n\n\nIf you’ve played Pokemon before, you can see the AI seems to be a bit simple. However, in order to rank the battles teams themselves we needed an equal playing field that didn’t cater too much to one strategy (Hyper Offense vs Stall) so this AI is pretty good with respect to that. Furthermore, its important to know that all else being equal we are ranking the teams themselves and we will run tests about what exactly makes a great team.\n\nThe Trainers\nThe tournament includes 73 trainer teams taken from some of the strongest battles in Pokemon Black 2 and White 2. Rather than using random in-game opponents, I focused on major trainers whose teams are meant to represent high-level battles within the game.\nThe field includes Champions, Elite Four members, Gym Leaders from the Pokemon World Tournament, rivals, and other notable postgame opponents. When multiple versions of a trainer existed, I used the strongest available team for this project (Hard Mode).\nTo make the field easier to understand, the 73 trainers can be grouped:\n\nChampions and top-level opponents\n\nChampions: Blue, Lance, Steven, Wallace, Cynthia, Alder, Red, and Iris.\n\n\n\nElite Four members\n\nElite Four - Marshal, Caitlin, Grimsley and Shauntal.\n\n\n\nGym Leaders\n\nKanto - Brock, Misty, Lt. Surge, Erika, Janine, Sabrina, Blaine, Giovanni.\nJohto - Falkner, Bugsy, Whitney, Morty, Chuck, Jasmine, Pryce, Claire.\nHoenn - Roxanne, Brawly, Wattson, Flannery, Norman, Winona, Tate, Liza, Juan.\nSinnoh - Roark, Gardenia, Fantina, Maylene, Wake, Byron, Candice, Volkner.\nUnova - Cheren, Roxie, Burgh, Elesa, Clay, Skyla, Drayden, Marlon, Chili, Cress, Cilan, Lenora, Brycen, Lenora, Brycen, Bianca.\n\n\n\nRivals and special trainers\n\nMisc. Trainers - Colress, Nishino, Morimoto, N (Spring), N (Summer), N (Autumn), N (Winter), Cheren (Fire), Cheren (Water), Cheren (Grass), Benga, Hugh (Fire), Hugh (Water) and Hugh (Grass).\n\nThis mix gives the tournament a wide range of team styles, from balanced champion teams to more specialized gym leader rosters. This allows us to explore more trends in the analysis as well as make sure we have notable trainers."
+  },
+  {
+    "objectID": "index.html#results",
+    "href": "index.html#results",
+    "title": "",
+    "section": "Results",
+    "text": "Results\n\nTop 10 Trainers by Elo\n\nThese are the resulting Top 10 from the tournament. From here we can see notable champions and high rankers, however above them is the best performing trainer was Shauntal, the Ghost Typer Elite Four.\n\n\nTrainers Cards\nThe trainer cards below have been given a few things. First they have been givena Rank from S to C. I ranked them using an algorithm based on an Elo (Ability Score) that was assigned based on the wins and losses of the trainers. Furthermorethey of course have their Placement in the tournament, from 1 to 73, as well their toughest matchup and easiest. The W/L stand for Win/Loss ratio. Check it out!.\n\nRank S TrainersRank A TrainersRank B TrainersRank C Trainers\n\n\n\n\nShauntal\n\n\n\nMisty\n\n\n\nJanine\n\n\n\nAlder\n\n\n\nMorty\n\n\n\nGiovanni\n\n\n\n\n\n\n\nLance\n\n\n\nN_Autumn\n\n\n\nSkyla\n\n\n\nWallace\n\n\n\nElesa\n\n\n\nClay\n\n\n\nN_Spring\n\n\n\nJasmine\n\n\n\nRed\n\n\n\nCynthia\n\n\n\nSabrina\n\n\n\nGrimsley\n\n\n\nCandice\n\n\n\nBrawly\n\n\n\nHugh_Fire\n\n\n\nNorman\n\n\n\nMarshal\n\n\n\nNishino\n\n\n\nBenga\n\n\n\nWattson\n\n\n\nN_Winter\n\n\n\nIris\n\n\n\nBlue\n\n\n\n\n\n\n\nBrock\n\n\n\nCheren\n\n\n\nRoxie\n\n\n\nFlannery\n\n\n\nBlaine\n\n\n\nHugh_Water\n\n\n\nCress\n\n\n\nLt.Surge\n\n\n\nBurgh\n\n\n\nJuan\n\n\n\nErika\n\n\n\nGardenia\n\n\n\nMarlon\n\n\n\nBugsy\n\n\n\nChuck\n\n\n\nWhitney\n\n\n\nHugh_Grass\n\n\n\nDrayden\n\n\n\nLenora\n\n\n\nPryce\n\n\n\nClair\n\n\n\nBianca\n\n\n\nCheren_Fire\n\n\n\nMaylene\n\n\n\nWake\n\n\n\nFantina\n\n\n\n\n\n\n\nSteven\n\n\n\nCheren_Water\n\n\n\nWinona\n\n\n\nN_Summer\n\n\n\nVolkner\n\n\n\nCaitlin\n\n\n\nCheren_Grass\n\n\n\nLiza\n\n\n\nBrycen\n\n\n\nChili\n\n\n\nTate\n\n\n\nByron\n\n\n\nRoxanne\n\n\n\nColress\n\n\n\nRoark\n\n\n\nMorimoto\n\n\n\nCilan"
+  }
+]

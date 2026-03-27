@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>index</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#what-is-pokemon-and-how-do-you-play" id="toc-what-is-pokemon-and-how-do-you-play" class="nav-link" data-scroll-target="#what-is-pokemon-and-how-do-you-play">What is Pokemon and how do you play?</a></li>
+  </ul></li>
+  <li><a href="#the-simulation" id="toc-the-simulation" class="nav-link" data-scroll-target="#the-simulation">The Simulation</a>
+  <ul class="collapse">
+  <li><a href="#the-trainers" id="toc-the-trainers" class="nav-link" data-scroll-target="#the-trainers">The Trainers</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#top-10-trainers-by-elo" id="toc-top-10-trainers-by-elo" class="nav-link" data-scroll-target="#top-10-trainers-by-elo">Top 10 Trainers by Elo</a></li>
+  <li><a href="#trainers-cards" id="toc-trainers-cards" class="nav-link" data-scroll-target="#trainers-cards">Trainers Cards</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Hello everyone! My name is Edgar Gonzalez Martinez and welcome to my first Data Science project. This project is an analysis of over 250,000 Pokemon Battles in a round robin style tournament from the strongest Trainers, Gym Leaders and Champions from Pokemon B2W2 (especially the PWT). I’ll give a basic overview of Pokemon and then include a much more involved analysis as I go!</p>
+<section id="what-is-pokemon-and-how-do-you-play" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-pokemon-and-how-do-you-play">What is Pokemon and how do you play?</h3>
+<p>Pokemon is a turn based strategy game where trainers battle using teams of six Pokemon. Each Pokemon has different stats, types, and moves, so team success depends on factors like offensive power, defensive coverage, speed, and matchup advantages. It’s a complicaed turn based game of rock, paper, scissors. That makes it a good setting for simulation and comparative analysis, since different teams can be tested repeatedly under the same rules.</p>
+</section>
+</section>
+<section id="the-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="the-simulation">The Simulation</h2>
+<p>This projects uses <a href="https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator">cRz-Shadows’ Pokemon Trainer Tournament Simulator</a> (huge thanks to them!) to automate battles in a specified sequence making it ideal for large analysis. This simulator makes use of the Pokemon Showdown engine and uses pipelines and threading to accelerate the speed at which it can be done. The setup is that it takes two trainer teams with equal heuristic based AI’s and sequentially battles them and outputs the results as txt file. I simultaed a 73 trainer round-robin tournament and battled each matchup 100 times. That means that every trainer battled every other trainer a total of 100 times. Which if you do the math is a total of 262,800 battles! From there, we are able to parse the battle logs for data analysis as wells as to view them. Here’s an example of the txt converted to html like Pokemon Showdown, check out the classic battle below!</p>
+<iframe src="Data/Tour100/battles_html/Blue_vs_Red.html" width="100%" height="600px" style="border: 1px solid #ccc; border-radius: 8px;">
+</iframe>
+<p>If you’ve played Pokemon before, you can see the AI seems to be a bit simple. However, in order to rank the battles teams themselves we needed an equal playing field that didn’t cater too much to one strategy (Hyper Offense vs Stall) so this AI is pretty good with respect to that. Furthermore, its important to know that all else being equal we are ranking the teams themselves and we will run tests about what exactly makes a great team.</p>
+<section id="the-trainers" class="level3">
+<h3 class="anchored" data-anchor-id="the-trainers">The Trainers</h3>
+<p>The tournament includes 73 trainer teams taken from some of the strongest battles in Pokemon Black 2 and White 2. Rather than using random in-game opponents, I focused on major trainers whose teams are meant to represent high-level battles within the game.</p>
+<p>The field includes Champions, Elite Four members, Gym Leaders from the Pokemon World Tournament, rivals, and other notable postgame opponents. When multiple versions of a trainer existed, I used the strongest available team for this project (Hard Mode).</p>
+<p>To make the field easier to understand, the 73 trainers can be grouped:</p>
+<section id="champions-and-top-level-opponents" class="level4">
+<h4 class="anchored" data-anchor-id="champions-and-top-level-opponents"><strong>Champions and top-level opponents</strong></h4>
+<ul>
+<li><strong>Champions:</strong> Blue, Lance, Steven, Wallace, Cynthia, Alder, Red, and Iris.</li>
+</ul>
+</section>
+<section id="elite-four-members" class="level4">
+<h4 class="anchored" data-anchor-id="elite-four-members"><strong>Elite Four members</strong></h4>
+<ul>
+<li><strong>Elite Four</strong> - Marshal, Caitlin, Grimsley and Shauntal.</li>
+</ul>
+</section>
+<section id="gym-leaders" class="level4">
+<h4 class="anchored" data-anchor-id="gym-leaders"><strong>Gym Leaders</strong></h4>
+<ul>
+<li><p><strong>Kanto</strong> - Brock, Misty, Lt. Surge, Erika, Janine, Sabrina, Blaine, Giovanni.</p></li>
+<li><p><strong>Johto</strong> - Falkner, Bugsy, Whitney, Morty, Chuck, Jasmine, Pryce, Claire.</p></li>
+<li><p><strong>Hoenn</strong> - Roxanne, Brawly, Wattson, Flannery, Norman, Winona, Tate, Liza, Juan.</p></li>
+<li><p><strong>Sinnoh</strong> - Roark, Gardenia, Fantina, Maylene, Wake, Byron, Candice, Volkner.</p></li>
+<li><p><strong>Unova</strong> - Cheren, Roxie, Burgh, Elesa, Clay, Skyla, Drayden, Marlon, Chili, Cress, Cilan, Lenora, Brycen, Lenora, Brycen, Bianca.</p></li>
+</ul>
+</section>
+<section id="rivals-and-special-trainers" class="level4">
+<h4 class="anchored" data-anchor-id="rivals-and-special-trainers"><strong>Rivals and special trainers</strong></h4>
+<ul>
+<li><strong>Misc. Trainers</strong> - Colress, Nishino, Morimoto, N (Spring), N (Summer), N (Autumn), N (Winter), Cheren (Fire), Cheren (Water), Cheren (Grass), Benga, Hugh (Fire), Hugh (Water) and Hugh (Grass).</li>
+</ul>
+<p>This mix gives the tournament a wide range of team styles, from balanced champion teams to more specialized gym leader rosters. This allows us to explore more trends in the analysis as well as make sure we have notable trainers.</p>
+</section>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="top-10-trainers-by-elo" class="level3">
+<h3 class="anchored" data-anchor-id="top-10-trainers-by-elo">Top 10 Trainers by Elo</h3>
+<p><img src="Data/top10_elo_bar.png" class="img-fluid" style="width:100.0%"></p>
+<p>These are the resulting Top 10 from the tournament. From here we can see notable champions and high rankers, however above them is the best performing trainer was Shauntal, the Ghost Typer Elite Four.</p>
+</section>
+<section id="trainers-cards" class="level3">
+<h3 class="anchored" data-anchor-id="trainers-cards">Trainers Cards</h3>
+<p>The trainer cards below have been given a few things. First they have been givena Rank from S to C. I ranked them using an algorithm based on an Elo (Ability Score) that was assigned based on the wins and losses of the trainers. Furthermorethey of course have their Placement in the tournament, from 1 to 73, as well their toughest matchup and easiest. The W/L stand for Win/Loss ratio. Check it out!.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Rank S Trainers</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Rank A Trainers</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Rank B Trainers</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Rank C Trainers</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div style="text-align: center;">
+<section id="shauntal" class="level3">
+<h3 class="anchored" data-anchor-id="shauntal">Shauntal</h3>
+<p><img src="Data/youtube/Output/Shauntal_card.webp" class="img-fluid"></p>
+</section>
+<section id="misty" class="level3">
+<h3 class="anchored" data-anchor-id="misty">Misty</h3>
+<p><img src="Data/youtube/Output/Misty_card.webp" class="img-fluid"></p>
+</section>
+<section id="janine" class="level3">
+<h3 class="anchored" data-anchor-id="janine">Janine</h3>
+<p><img src="Data/youtube/Output/Janine_card.webp" class="img-fluid"></p>
+</section>
+<section id="alder" class="level3">
+<h3 class="anchored" data-anchor-id="alder">Alder</h3>
+<p><img src="Data/youtube/Output/Alder_card.webp" class="img-fluid"></p>
+</section>
+<section id="morty" class="level3">
+<h3 class="anchored" data-anchor-id="morty">Morty</h3>
+<p><img src="Data/youtube/Output/Morty_card.webp" class="img-fluid"></p>
+</section>
+<section id="giovanni" class="level3">
+<h3 class="anchored" data-anchor-id="giovanni">Giovanni</h3>
+<p><img src="Data/youtube/Output/Giovanni_card.webp" class="img-fluid"></p>
+</section>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div style="text-align: center;">
+<section id="lance" class="level3">
+<h3 class="anchored" data-anchor-id="lance">Lance</h3>
+<p><img src="Data/youtube/Output/Lance_card.webp" class="img-fluid"></p>
+</section>
+<section id="n_autumn" class="level3">
+<h3 class="anchored" data-anchor-id="n_autumn">N_Autumn</h3>
+<p><img src="Data/youtube/Output/N_Autumn_card.webp" class="img-fluid"></p>
+</section>
+<section id="skyla" class="level3">
+<h3 class="anchored" data-anchor-id="skyla">Skyla</h3>
+<p><img src="Data/youtube/Output/Skyla_card.webp" class="img-fluid"></p>
+</section>
+<section id="wallace" class="level3">
+<h3 class="anchored" data-anchor-id="wallace">Wallace</h3>
+<p><img src="Data/youtube/Output/Wallace_card.webp" class="img-fluid"></p>
+</section>
+<section id="elesa" class="level3">
+<h3 class="anchored" data-anchor-id="elesa">Elesa</h3>
+<p><img src="Data/youtube/Output/Elesa_card.webp" class="img-fluid"></p>
+</section>
+<section id="clay" class="level3">
+<h3 class="anchored" data-anchor-id="clay">Clay</h3>
+<p><img src="Data/youtube/Output/Clay_card.webp" class="img-fluid"></p>
+</section>
+<section id="n_spring" class="level3">
+<h3 class="anchored" data-anchor-id="n_spring">N_Spring</h3>
+<p><img src="Data/youtube/Output/N_Spring_card.webp" class="img-fluid"></p>
+</section>
+<section id="jasmine" class="level3">
+<h3 class="anchored" data-anchor-id="jasmine">Jasmine</h3>
+<p><img src="Data/youtube/Output/Jasmine_card.webp" class="img-fluid"></p>
+</section>
+<section id="red" class="level3">
+<h3 class="anchored" data-anchor-id="red">Red</h3>
+<p><img src="Data/youtube/Output/Red_card.webp" class="img-fluid"></p>
+</section>
+<section id="cynthia" class="level3">
+<h3 class="anchored" data-anchor-id="cynthia">Cynthia</h3>
+<p><img src="Data/youtube/Output/Cynthia_card.webp" class="img-fluid"></p>
+</section>
+<section id="sabrina" class="level3">
+<h3 class="anchored" data-anchor-id="sabrina">Sabrina</h3>
+<p><img src="Data/youtube/Output/Sabrina_card.webp" class="img-fluid"></p>
+</section>
+<section id="grimsley" class="level3">
+<h3 class="anchored" data-anchor-id="grimsley">Grimsley</h3>
+<p><img src="Data/youtube/Output/Grimsley_card.webp" class="img-fluid"></p>
+</section>
+<section id="candice" class="level3">
+<h3 class="anchored" data-anchor-id="candice">Candice</h3>
+<p><img src="Data/youtube/Output/Candice_card.webp" class="img-fluid"></p>
+</section>
+<section id="brawly" class="level3">
+<h3 class="anchored" data-anchor-id="brawly">Brawly</h3>
+<p><img src="Data/youtube/Output/Brawly_card.webp" class="img-fluid"></p>
+</section>
+<section id="hugh_fire" class="level3">
+<h3 class="anchored" data-anchor-id="hugh_fire">Hugh_Fire</h3>
+<p><img src="Data/youtube/Output/Hugh_Fire_card.webp" class="img-fluid"></p>
+</section>
+<section id="norman" class="level3">
+<h3 class="anchored" data-anchor-id="norman">Norman</h3>
+<p><img src="Data/youtube/Output/Norman_card.webp" class="img-fluid"></p>
+</section>
+<section id="marshal" class="level3">
+<h3 class="anchored" data-anchor-id="marshal">Marshal</h3>
+<p><img src="Data/youtube/Output/Marshal_card.webp" class="img-fluid"></p>
+</section>
+<section id="nishino" class="level3">
+<h3 class="anchored" data-anchor-id="nishino">Nishino</h3>
+<p><img src="Data/youtube/Output/Nishino_card.webp" class="img-fluid"></p>
+</section>
+<section id="benga" class="level3">
+<h3 class="anchored" data-anchor-id="benga">Benga</h3>
+<p><img src="Data/youtube/Output/Benga_card.webp" class="img-fluid"></p>
+</section>
+<section id="wattson" class="level3">
+<h3 class="anchored" data-anchor-id="wattson">Wattson</h3>
+<p><img src="Data/youtube/Output/Wattson_card.webp" class="img-fluid"></p>
+</section>
+<section id="n_winter" class="level3">
+<h3 class="anchored" data-anchor-id="n_winter">N_Winter</h3>
+<p><img src="Data/youtube/Output/N_Winter_card.webp" class="img-fluid"></p>
+</section>
+<section id="iris" class="level3">
+<h3 class="anchored" data-anchor-id="iris">Iris</h3>
+<p><img src="Data/youtube/Output/Iris_card.webp" class="img-fluid"></p>
+</section>
+<section id="blue" class="level3">
+<h3 class="anchored" data-anchor-id="blue">Blue</h3>
+<p><img src="Data/youtube/Output/Blue_card.webp" class="img-fluid"></p>
+</section>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div style="text-align: center;">
+<section id="brock" class="level3">
+<h3 class="anchored" data-anchor-id="brock">Brock</h3>
+<p><img src="Data/youtube/Output/Brock_card.webp" class="img-fluid"></p>
+</section>
+<section id="cheren" class="level3">
+<h3 class="anchored" data-anchor-id="cheren">Cheren</h3>
+<p><img src="Data/youtube/Output/Cheren_card.webp" class="img-fluid"></p>
+</section>
+<section id="roxie" class="level3">
+<h3 class="anchored" data-anchor-id="roxie">Roxie</h3>
+<p><img src="Data/youtube/Output/Roxie_card.webp" class="img-fluid"></p>
+</section>
+<section id="flannery" class="level3">
+<h3 class="anchored" data-anchor-id="flannery">Flannery</h3>
+<p><img src="Data/youtube/Output/Flannery_card.webp" class="img-fluid"></p>
+</section>
+<section id="blaine" class="level3">
+<h3 class="anchored" data-anchor-id="blaine">Blaine</h3>
+<p><img src="Data/youtube/Output/Blaine_card.webp" class="img-fluid"></p>
+</section>
+<section id="hugh_water" class="level3">
+<h3 class="anchored" data-anchor-id="hugh_water">Hugh_Water</h3>
+<p><img src="Data/youtube/Output/Hugh_Water_card.webp" class="img-fluid"></p>
+</section>
+<section id="cress" class="level3">
+<h3 class="anchored" data-anchor-id="cress">Cress</h3>
+<p><img src="Data/youtube/Output/Cress_card.webp" class="img-fluid"></p>
+</section>
+<section id="lt.surge" class="level3">
+<h3 class="anchored" data-anchor-id="lt.surge">Lt.Surge</h3>
+<p><img src="Data/youtube/Output/Lt.Surge_card.webp" class="img-fluid"></p>
+</section>
+<section id="burgh" class="level3">
+<h3 class="anchored" data-anchor-id="burgh">Burgh</h3>
+<p><img src="Data/youtube/Output/Burgh_card.webp" class="img-fluid"></p>
+</section>
+<section id="juan" class="level3">
+<h3 class="anchored" data-anchor-id="juan">Juan</h3>
+<p><img src="Data/youtube/Output/Juan_card.webp" class="img-fluid"></p>
+</section>
+<section id="erika" class="level3">
+<h3 class="anchored" data-anchor-id="erika">Erika</h3>
+<p><img src="Data/youtube/Output/Erika_card.webp" class="img-fluid"></p>
+</section>
+<section id="gardenia" class="level3">
+<h3 class="anchored" data-anchor-id="gardenia">Gardenia</h3>
+<p><img src="Data/youtube/Output/Gardenia_card.webp" class="img-fluid"></p>
+</section>
+<section id="marlon" class="level3">
+<h3 class="anchored" data-anchor-id="marlon">Marlon</h3>
+<p><img src="Data/youtube/Output/Marlon_card.webp" class="img-fluid"></p>
+</section>
+<section id="bugsy" class="level3">
+<h3 class="anchored" data-anchor-id="bugsy">Bugsy</h3>
+<p><img src="Data/youtube/Output/Bugsy_card.webp" class="img-fluid"></p>
+</section>
+<section id="chuck" class="level3">
+<h3 class="anchored" data-anchor-id="chuck">Chuck</h3>
+<p><img src="Data/youtube/Output/Chuck_card.webp" class="img-fluid"></p>
+</section>
+<section id="whitney" class="level3">
+<h3 class="anchored" data-anchor-id="whitney">Whitney</h3>
+<p><img src="Data/youtube/Output/Whitney_card.webp" class="img-fluid"></p>
+</section>
+<section id="hugh_grass" class="level3">
+<h3 class="anchored" data-anchor-id="hugh_grass">Hugh_Grass</h3>
+<p><img src="Data/youtube/Output/Hugh_Grass_card.webp" class="img-fluid"></p>
+</section>
+<section id="drayden" class="level3">
+<h3 class="anchored" data-anchor-id="drayden">Drayden</h3>
+<p><img src="Data/youtube/Output/Drayden_card.webp" class="img-fluid"></p>
+</section>
+<section id="lenora" class="level3">
+<h3 class="anchored" data-anchor-id="lenora">Lenora</h3>
+<p><img src="Data/youtube/Output/Lenora_card.webp" class="img-fluid"></p>
+</section>
+<section id="pryce" class="level3">
+<h3 class="anchored" data-anchor-id="pryce">Pryce</h3>
+<p><img src="Data/youtube/Output/Pryce_card.webp" class="img-fluid"></p>
+</section>
+<section id="clair" class="level3">
+<h3 class="anchored" data-anchor-id="clair">Clair</h3>
+<p><img src="Data/youtube/Output/Clair_card.webp" class="img-fluid"></p>
+</section>
+<section id="bianca" class="level3">
+<h3 class="anchored" data-anchor-id="bianca">Bianca</h3>
+<p><img src="Data/youtube/Output/Bianca_card.webp" class="img-fluid"></p>
+</section>
+<section id="cheren_fire" class="level3">
+<h3 class="anchored" data-anchor-id="cheren_fire">Cheren_Fire</h3>
+<p><img src="Data/youtube/Output/Cheren_Fire_card.webp" class="img-fluid"></p>
+</section>
+<section id="maylene" class="level3">
+<h3 class="anchored" data-anchor-id="maylene">Maylene</h3>
+<p><img src="Data/youtube/Output/Maylene_card.webp" class="img-fluid"></p>
+</section>
+<section id="wake" class="level3">
+<h3 class="anchored" data-anchor-id="wake">Wake</h3>
+<p><img src="Data/youtube/Output/Wake_card.webp" class="img-fluid"></p>
+</section>
+<section id="fantina" class="level3">
+<h3 class="anchored" data-anchor-id="fantina">Fantina</h3>
+<p><img src="Data/youtube/Output/Fantina_card.webp" class="img-fluid"></p>
+</section>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div style="text-align: center;">
+<section id="steven" class="level3">
+<h3 class="anchored" data-anchor-id="steven">Steven</h3>
+<p><img src="Data/youtube/Output/Steven_card.webp" class="img-fluid"></p>
+</section>
+<section id="cheren_water" class="level3">
+<h3 class="anchored" data-anchor-id="cheren_water">Cheren_Water</h3>
+<p><img src="Data/youtube/Output/Cheren_Water_card.webp" class="img-fluid"></p>
+</section>
+<section id="winona" class="level3">
+<h3 class="anchored" data-anchor-id="winona">Winona</h3>
+<p><img src="Data/youtube/Output/Winona_card.webp" class="img-fluid"></p>
+</section>
+<section id="n_summer" class="level3">
+<h3 class="anchored" data-anchor-id="n_summer">N_Summer</h3>
+<p><img src="Data/youtube/Output/N_Summer_card.webp" class="img-fluid"></p>
+</section>
+<section id="volkner" class="level3">
+<h3 class="anchored" data-anchor-id="volkner">Volkner</h3>
+<p><img src="Data/youtube/Output/Volkner_card.webp" class="img-fluid"></p>
+</section>
+<section id="caitlin" class="level3">
+<h3 class="anchored" data-anchor-id="caitlin">Caitlin</h3>
+<p><img src="Data/youtube/Output/Caitlin_card.webp" class="img-fluid"></p>
+</section>
+<section id="cheren_grass" class="level3">
+<h3 class="anchored" data-anchor-id="cheren_grass">Cheren_Grass</h3>
+<p><img src="Data/youtube/Output/Cheren_Grass_card.webp" class="img-fluid"></p>
+</section>
+<section id="liza" class="level3">
+<h3 class="anchored" data-anchor-id="liza">Liza</h3>
+<p><img src="Data/youtube/Output/Liza_card.webp" class="img-fluid"></p>
+</section>
+<section id="brycen" class="level3">
+<h3 class="anchored" data-anchor-id="brycen">Brycen</h3>
+<p><img src="Data/youtube/Output/Brycen_card.webp" class="img-fluid"></p>
+</section>
+<section id="chili" class="level3">
+<h3 class="anchored" data-anchor-id="chili">Chili</h3>
+<p><img src="Data/youtube/Output/Chili_card.webp" class="img-fluid"></p>
+</section>
+<section id="tate" class="level3">
+<h3 class="anchored" data-anchor-id="tate">Tate</h3>
+<p><img src="Data/youtube/Output/Tate_card.webp" class="img-fluid"></p>
+</section>
+<section id="byron" class="level3">
+<h3 class="anchored" data-anchor-id="byron">Byron</h3>
+<p><img src="Data/youtube/Output/Byron_card.webp" class="img-fluid"></p>
+</section>
+<section id="roxanne" class="level3">
+<h3 class="anchored" data-anchor-id="roxanne">Roxanne</h3>
+<p><img src="Data/youtube/Output/Roxanne_card.webp" class="img-fluid"></p>
+</section>
+<section id="colress" class="level3">
+<h3 class="anchored" data-anchor-id="colress">Colress</h3>
+<p><img src="Data/youtube/Output/Colress_card.webp" class="img-fluid"></p>
+</section>
+<section id="roark" class="level3">
+<h3 class="anchored" data-anchor-id="roark">Roark</h3>
+<p><img src="Data/youtube/Output/Roark_card.webp" class="img-fluid"></p>
+</section>
+<section id="morimoto" class="level3">
+<h3 class="anchored" data-anchor-id="morimoto">Morimoto</h3>
+<p><img src="Data/youtube/Output/Morimoto_card.webp" class="img-fluid"></p>
+</section>
+<section id="cilan" class="level3">
+<h3 class="anchored" data-anchor-id="cilan">Cilan</h3>
+<p><img src="Data/youtube/Output/Cilan_card.webp" class="img-fluid"></p>
+</section>
+</div>
+</div>
+</div>
+</div>
+<p><img src="Data/all_trainers_elo_scatter.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="Data/analysis/pca_pc1_pc2.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="Data/analysis/ability_vs_unique_move_types.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="Data/analysis/story_bulk_quadratic.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="Data/analysis/top2_coefficients.png" class="img-fluid" style="width:100.0%"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,7 @@
+Data/
+data/
+*.log
+*.txt
+.quarto/
+_freeze/
+_site/
