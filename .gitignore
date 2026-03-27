@@ -5,3 +5,15 @@ data/
 .quarto/
 _freeze/
 _site/
+
+/.quarto/
+
+.idea/
+index.html
+index_files/
+manual.html
+manual.md
+manual_files/
+pokemon-showdown/
+Extra/
+.gitmodules
