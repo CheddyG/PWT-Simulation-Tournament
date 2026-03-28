@@ -1,17 +1,23 @@
 ## Introduction 
-Hello everyone! My name is Edgar Gonzalez Martinez and welcome to my first Data Science project. 
-This project is an analysis of over 250,000 Pokemon Battles in a round robin style tournament from the strongest Trainers, Gym Leaders and Champions from Pokemon B2W2 (especially the PWT). 
-I'll give a basic overview of Pokemon and then include a much more involved analysis as I go!
+Hello everyone. My name is Edgar Gonzalez Martinez, and this report presents my first full data science project. 
+In this project, I analyze over 250,000 simulated Pokemon battles from a round robin style tournament featuring some of the strongest Trainers, Gym Leaders, and Champions from Pokemon Black 2 and White 2, particularly taking teams from the Pokemon World Tournament (PWT) event in the games. 
+
+The goal of this project is not just to rank trainers by battle performance, but also to explore what actually makes a team strong. By combining simulation, feature engineering, visualization, and statistical modeling, I use Pokemon as a way to study how team composition relates to long run success in a competitive environment.
 
 ### What is Pokemon and how do you play?
+Pokemon is a turn based strategy game where trainers battle using teams of six Pokemon. Each Pokemon has its own unique combination of stats, typing, abilities, and moves, which means that success depends on much more than just raw strength. A strong team usually needs some combination of offensive power, defensive stability, speed, useful move coverage, and favorable type matchups. In that sense, Pokemon can feel like a complicated version of rock, paper, scissors, where every choice has strengths, weaknesses, and tradeoffs.
 
-Pokemon is a turn based strategy game where trainers battle using teams of six Pokemon. Each Pokemon has different stats, types, and moves, so team success depends on factors like offensive power, defensive coverage, speed, and matchup advantages. 
-It's a complicaed turn based game of rock, paper, scissors. That makes it a good setting for simulation and comparative analysis, since different teams can be tested repeatedly under the same rules.
+That level of complexity makes Pokemon a good setting for simulation and data analysis. Different teams can be tested over and over again under the same rules, which makes it possible to compare performance in a controlled way. Instead of relying on a few individual battles, this project uses a very large number of simulations to study patterns that only become clear at a large scale.
 
+## The Simulation
 
-## The Simulation 
-This projects uses [cRz-Shadows' Pokemon Trainer Tournament Simulator](https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator) (huge thanks to them!) to automate battles in a specified sequence making it ideal for large analysis. This simulator makes use of the Pokemon Showdown engine and uses pipelines and threading to accelerate the speed at which it can be done. The setup is that it takes two trainer teams with equal heuristic based AI's and sequentially battles them and outputs the results as txt file.
- I simultaed a 73 trainer round-robin tournament and battled each matchup 100 times. That means that every trainer battled every other trainer a total of 100 times. Which if you do the math is a total of 262,800 battles! From there, we are able to parse the battle logs for data analysis as wells as to view them. Here's an example of the txt converted to html like Pokemon Showdown, check out the classic battle below! 
+This project uses [cRz-Shadows’ Pokemon Trainer Tournament Simulator](https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator), so huge thanks to them for making this possible. The simulator automates battles in a specified sequence, which makes it ideal for large-scale analysis. It is built on the Pokemon Showdown battle engine and uses pipelines and threading to speed up the simulation process.
+
+The basic setup is straightforward. The simulator takes two trainer teams, gives them equally matched heuristic-based AIs, runs the battle, and outputs the result as a `.txt` battle log.
+
+For this project, I simulated a 73-trainer round-robin tournament and ran each matchup 100 times. In other words, every trainer battled every other trainer a total of 100 times. That comes out to 262,800 total battles.
+
+Once those battles were completed, I was able to parse the battle logs for data analysis and also convert them into viewable battle replays. Here is an example of one of those logs converted into an HTML replay. Check out the classic battle below!
 
 <iframe src="Data/Tour100/battles_html/Blue_vs_Red.html" 
         width="100%" 
@@ -19,15 +25,17 @@ This projects uses [cRz-Shadows' Pokemon Trainer Tournament Simulator](https://g
         style="border: 1px solid #ccc; border-radius: 8px;">
 </iframe>
 
-If you've played Pokemon before, you can see the AI seems to be a bit simple. However, in order to rank the battles teams themselves we needed an equal playing field that didn't cater too much to one strategy (Hyper Offense vs Stall) so this AI is pretty good with respect to that. Furthermore, its important to know that all else being equal we are ranking the teams themselves and we will run tests about what exactly makes a great team.
+If you have played Pokemon before, you can probably tell that the AI is somewhat simple. While that is true, for this project that was actually important. Since the goal is to rank the teams themselves, I wanted every battle to take place on as equal a playing field as possible without favoring one strategy too heavily over another.
+
+In other words, the AI is not meant to perfectly imitate high-level human play. Instead, it provides a consistent and balanced framework for comparison across all trainers. With everything else held as constant as possible, the focus stays on the strength of the teams themselves. From there, I can test which team characteristics are actually associated with strong performance.
 
 ### The Trainers
 
-The tournament includes 73 trainer teams taken from some of the strongest battles in Pokemon Black 2 and White 2. Rather than using random in-game opponents, I focused on major trainers whose teams are meant to represent high-level battles within the game.
+The tournament includes 73 trainer teams taken from some of the strongest battles in *Pokemon Black 2* and *White 2*. Rather than using random in-game opponents, I focused on major trainers whose teams are meant to represent some of the highest-level battles available in the game.
 
-The field includes Champions, Elite Four members, Gym Leaders from the Pokemon World Tournament, rivals, and other notable postgame opponents. When multiple versions of a trainer existed, I used the strongest available team for this project (Hard Mode).
+The field includes Champions, Elite Four members, Gym Leaders, rivals, and other notable postgame opponents. These were mostly taken from the PWT. When multiple versions of a trainer were available, I used the strongest version for this project, specifically their Hard Mode team.
 
-To make the field easier to understand, the 73 trainers can be grouped:
+To make the field easier to understand, the 73 trainers can be grouped into the following categories:
 
 #### **Champions and top-level opponents** 
 - **Champions:** Blue, Lance, Steven, Wallace, Cynthia, Alder, Red, and Iris.
@@ -56,7 +64,7 @@ Morty,
 Chuck,
 Jasmine,
 Pryce,
-Claire.
+Clair.
 
 - **Hoenn** - Roxanne,
 Brawly,
@@ -90,8 +98,6 @@ Cress,
 Cilan,
 Lenora,
 Brycen,
-Lenora,
-Brycen,
 Bianca.
 
 #### **Rivals and special trainers** 
@@ -111,19 +117,37 @@ and
 Hugh (Grass).
 
 
-This mix gives the tournament a wide range of team styles, from balanced champion teams to more specialized gym leader rosters.
-This allows us to explore more trends in the analysis as well as make sure we have notable trainers. 
+This mix gives the tournament a wide range of team styles, from balanced Champion teams to more specialized Gym Leader rosters.
+It also makes the field more interesting to analyze, since the tournament includes both highly notable trainers and a variety of team-building approaches.
 
 ## Results
 
 ### Top 10 Trainers by Elo
+Each trainer was also given an Elo score, calculated as a linear rescaling of the ability score produced by the Bradley-Terry model. Put simply, this Elo score is not based only on an overall win-loss ratio. Instead, it reflects each trainer’s results across individual matchups, which makes it a more informative summary of overall performance.
+
+I chose to express the results this way because Elo is much more approachable for most readers. The scale is centered at 1500, with most values designed to fall roughly between 1000 and 2000. In the later statistical analysis, I will return to the raw ability score, but Elo provides a much more intuitive starting point for ranking the field.
+
+The top 10 trainers from the tournament are shown below. As expected, many well-known Champions and other elite trainers appear near the top of the rankings. However, the strongest overall performer in the tournament was Shauntal, the Ghost-type Elite Four member.
 
 ![](Data/top10_elo_bar.png){width="100%"}
 
-These are the resulting Top 10 from the tournament. From here we can see notable champions and high rankers, however above them is the best performing trainer was Shauntal, the Ghost Typer Elite Four.  
+Were you surprised? I definitely was. The top 10 includes a pretty diverse group of trainers, which is a good sign that the simulation produced meaningful results rather than something overly narrow or predictable.
 
-### Trainers Cards
-The trainer cards below have been given a few things. First they have been givena Rank from S to C. I ranked them using an algorithm based on an Elo (Ability Score) that was assigned based on the wins and losses of the trainers. Furthermorethey of course have their Placement in the tournament, from 1 to 73, as well their toughest matchup and easiest. The W/L stand for Win/Loss ratio. Check it out!. 
+We still see many Champions and other high-ranking trainers near the top, so the early results line up well with what we might expect from such a strong field. At the same time, there are also a few outcomes that are less obvious at first glance, which makes the tournament even more interesting to study.
+
+I cover a more detailed analysis below, but first, check out the trainer cards I made.
+
+### Trainer Cards
+
+I’ll quickly go over a few of the metrics shown on the trainer cards below.
+
+First, each trainer was assigned a rank from S to C based on their Elo. I created this ranking using an algorithm built from each trainer’s Elo, which itself was based on the underlying Ability Score calculated from their wins and losses.
+
+Each card also shows the trainer’s overall placement in the tournament, from 1 to 73, along with their toughest matchup and easiest matchup.
+
+Lastly, W/L stands for win-loss ratio.
+
+Check them out.
 
 ::: {.panel-tabset}
 
@@ -364,14 +388,121 @@ The trainer cards below have been given a few things. First they have been given
 :::
 
 
+## Data Analysis
+
+### Overview
+
+The tournament results show which trainers performed the best, but rankings alone do not explain why certain teams were more successful than others. To answer that question, I moved from simple tournament outcomes into a more structured data analysis.
+
+For each of the 73 trainers, I built a set of team-level features designed to summarize important parts of team construction. These features capture ideas such as speed, bulk, offensive pressure, move diversity, and defensive coverage. By turning each team into a single observation with measurable characteristics, I could compare team structure directly against tournament performance.
+
+For the main statistical analysis, I use the Bradley-Terry Ability Score rather than Elo. Elo is useful for presenting rankings in a way that is easy to understand, but Ability Score is the underlying performance measure and is better suited for modeling. Using that score, I explore how team features relate to success through visualization, Principal Component Analysis, and regression.
+
+The goal of this section is to move beyond asking which trainers won the most and instead ask what kinds of teams tended to perform well across the full tournament. In other words, this is the part of the project where the battle simulator becomes a real data science study.
+
+### Why the Bradley-Terry Model? 
+
+A simple win-loss ratio is helpful, but statistically it throws away a lot of structure in the tournament. It tells us how often a trainer won overall, but it does not account for *who* those wins came against. In a round-robin setting, that matters a lot. Beating a very strong trainer should tell us more than beating a weak one, and losing to a top trainer should not be treated the same as losing to a weak trainer.
+
+To account for this, I used the Bradley-Terry model. The Bradley-Terry model is a statistical model for pairwise competition. It assumes that each competitor, in this case each trainer, has an underlying positive strength parameter.
+
+This means that the probability of winning depends on the relative strengths of the two trainers, not just on one trainer in isolation. If two trainers have equal strength, then each has a 50 percent chance to win. If one trainer has a much larger strength value, then the model assigns that trainer a higher probability of winning.
+
+
+This is conceptually similar to Elo, though Bradley-Terry is the actual statistical model used here. The difference between two trainers’ parameters determines the log-odds of one beating the other. In other words, the model estimates a latent ability score for each trainer, and match outcomes are explained through differences in those scores.
+
+The parameters are estimated using maximum likelihood. Across all head-to-head matchups, the model chooses the set of ability values that makes the observed battle outcomes most likely under the model. Since my tournament contains repeated pairings between every pair of trainers, the Bradley-Terry model is a natural fit because it uses the full network of pairwise results rather than collapsing everything into one overall record.
+
+This is the main reason I preferred Bradley-Terry over raw win percentage. Win percentage treats all wins and losses as if they are equally informative. Bradley-Terry instead recognizes strength of opposition through the structure of the pairwise comparisons. As a result, the Ability Score produced by the model gives a more statistically meaningful estimate of overall team strength.
+
+For presentation, I later rescaled the Ability Scores into an Elo-like scale so that the rankings would be easier to read. However, for the actual data analysis, I use the raw Bradley-Terry Ability Score because it is the quantity directly estimated by the model.
+
+### Building the Dataset
+
+To move from simple tournament rankings into statistical analysis, I treated each of the 73 trainer teams as a single observation in a dataset. After computing each Trainer's Ability Score, I engineered a set of team-level features designed to capture different dimensions of team construction. These features included average Speed, Bulk, Power, offensive leaning, defensive leaning, unique move types, type diversity, move ratio, net resistances, type volatility, and average base stat total. Rather than focusing on one individual Pokemon, these variables summarize the team as a whole.
+
+The figure below gives a quick view of how the Elo-based rankings spread across the full field before moving into the feature-based analysis.
+
 ![](Data/all_trainers_elo_scatter.png){width="100%"}
+
+It is important to note that I used K-means clustering to give each trainer a rank. To assign rank tiers from S to C, I used K-means clustering on the trainers’ Elo scores rather than choosing cutoff points by hand. This let the rank boundaries come from the structure of the data itself instead of from an arbitrary set of breaks. To decide how many groups to use, I evaluated several possible values of \(k\) and compared their silhouette scores. The silhouette score measures how well each observation fits within its assigned cluster compared to the other clusters, so higher values indicate cleaner separation and more meaningful grouping. Based on that comparison, I selected the value of \(k\) that best balanced separation and cohesion in the dataset, and then labeled the resulting clusters as S, A, B, and C tiers from highest to lowest average Elo.
+
+The idea behind this step was to translate each team into a form that could be analyzed quantitatively. For example, some features measure raw stats, while others describe coverage, balance, or how well a team handles opposing attacks. Together, they create a structured way to compare how different types of teams performed across the tournament.
+
+Once this dataset was built, I could begin asking more specific questions. Do stronger teams tend to be faster? Does more move diversity help? Is bulk always a good thing, or does it show diminishing returns? The rest of this section explores those questions using visualization, Principal Component Analysis, and regression.
+
+
+
+### Principal Component Analysis
+
+Because many of the team features in this project are related to each other, I used Principal Component Analysis, or PCA, to reduce the dimensionality of the dataset and look for broader patterns in team construction. Features such as Bulk, Power, Speed, move diversity, and type-based structure do not operate completely independently, so PCA helps summarize those overlapping relationships into a smaller number of combined variables called principal components.
+
+The first two principal components capture a substantial share of the variation in the dataset. PC1 explains 26.4% of the total variance, while PC2 explains 22.1%. Together, they account for 48.5% of the variation across the 73 trainer teams. This means that nearly half of the differences in team structure can be summarized in a two-dimensional plot.
 
 ![](Data/analysis/pca_pc1_pc2.png){width="100%"}
 
 
+Looking at the loadings helps explain what these components represent. PC1 is influenced most strongly by Bulk, Def_Lean, Type_Volatility, and Net_Resist, while Avg_Speed loads negatively. This suggests that PC1 reflects a broader defensive team structure axis. Teams with higher PC1 values tend to be bulkier, more defense-oriented, and less speed-focused. PC2 is influenced most strongly by Move_Ratio, Unique_Move_Types, Off_Lean, and Power, which suggests that it reflects an offensive pressure and move diversity axis. In other words, teams with higher PC2 values tend to be more offense-oriented and coverage-focused.
+
+This interpretation makes the PCA plot much more meaningful. Moving from left to right roughly tracks teams from faster and less defensive structures toward bulkier and more defense-oriented ones. Moving from bottom to top tracks teams from less offense-focused structures toward teams with stronger offensive pressure and more diverse attacking options.
+
+Even so, the plot shows that the trainer tiers do not separate perfectly along these two dimensions. While some stronger teams appear in similar regions of the graph, there is still considerable overlap between S, A, B, and C tier trainers. That result is important because it suggests that team success is not explained by one simple combination of bulk and offense alone. Instead, tournament performance likely depends on a more complicated mix of team traits, matchup structure, and interactions between variables.
+
+Overall, PCA was useful as an exploratory step because it revealed broad patterns in team structure, even though those patterns did not fully separate the strongest teams from the weakest ones.
+
+### Linear Regression
+
+After using PCA to explore broader patterns in team structure, I moved to linear regression to study how specific features related to tournament success more directly. In this section, the response variable is the Bradley-Terry Ability Score, and the predictors are the engineered team-level features described earlier.
+
+I first tested the first three principal components together, but that model explained very little of the variation in Ability Score. The regression on PC1, PC2, and PC3 produced an \(R^2\) of only 0.055, and the overall model was not statistically significant (\(p = 0.266\)). Among the three components, PC2 came the closest to significance (\(p = 0.078\)), while PC1 and PC3 showed little evidence of a meaningful linear relationship with team performance. This suggests that broad low-dimensional summaries of team structure are useful for visualization, but they do not capture tournament success especially well on their own.
+
 ![](Data/analysis/ability_vs_unique_move_types.png){width="100%"}
+
+I then ran separate linear regressions on the original team features. Out of all the individual predictors, **Unique_Move_Types** stood out the most. On its own, it produced a positive coefficient of 4.868 and was statistically significant (\(p = 0.0064\)), with an \(R^2\) of about 0.100. This means that teams with access to a wider range of move types tended to perform better, and that move diversity had one of the clearest direct relationships with Ability Score in the dataset.
+
+This result makes intuitive sense in Pokemon. A team with more unique move types is often better equipped to pressure a wider variety of opponents, cover unfavorable matchups, and avoid becoming too narrow offensively. In a round-robin tournament, where teams must succeed across many different battles, that kind of flexibility appears to be especially valuable.
+
+At the same time, the relationship is still modest. Even though the trend is positive, the scatterplot shows substantial variation at similar values of **Unique_Move_Types**, and the model explains only about 10% of the variation in Ability Score by itself. In other words, move diversity matters, but it is not the whole story.
+
+Overall, the linear regression results suggest that no single feature fully explains why a team succeeds, but some variables are more informative than others. In particular, **Unique_Move_Types** consistently showed one of the strongest positive relationships with Ability Score, while the broader multivariable models suggest that offensive strength, coverage, and overall team construction all contribute in overlapping ways.
+
+### Polynomial Regression
+
+The linear regression results suggested that some features mattered, but they also hinted that not every relationship in the dataset was purely linear. In a game like Pokemon, that makes sense. A team trait such as bulk may help up to a point, but too much of it could come at the cost of speed, pressure, or flexibility. Because of that, I tested whether some of the relationships with Ability Score were better modeled with polynomial terms rather than straight lines.
+
+One of the clearest examples was **Bulk**. In the simple linear regressions, Bulk did not show a strong direct relationship with Ability Score by itself. However, once I added a quadratic term, the picture changed. In the nonlinear model, the coefficient for **Bulk** was positive and statistically significant (\(p = 0.0147\)), while the coefficient for **Bulk\(^2\)** was negative and also statistically significant (\(p = 0.0168\)). This is strong evidence of a curved relationship rather than a purely linear one.
 
 ![](Data/analysis/story_bulk_quadratic.png){width="100%"}
 
+
+The fitted curve suggests an inverted-U pattern. Teams with very low bulk tended to perform poorly, but teams with extremely high bulk also appeared to lose performance. The strongest results were found somewhere in the middle, where teams had enough defensive strength to survive pressure without sacrificing too much offensive potential or overall balance. In other words, bulk appears to help, but only up to a point.
+
+This interpretation fits the logic of competitive Pokemon. Teams that are too fragile may not survive long enough to execute their strategy, but teams that lean too far into bulk may become too passive, too slow, or too limited in coverage to perform well across a large and diverse tournament field. The best-performing teams seem to strike a balance rather than maximizing bulk at all costs.
+
+The nonlinear model also improved overall fit. The top-3 linear model had an \(R^2\) of 0.146, while the model with nonlinear terms increased that to 0.243, with an overall model \(p\)-value of 0.0043. In addition, the nonlinear model performed better in leave-one-out cross-validation than the comparable linear and interaction models, producing the lowest RMSE among those top-feature models. That makes the quadratic bulk relationship not only statistically interesting, but also more useful for prediction.
+
+Overall, the polynomial regression results show that some team traits are better understood as nonlinear tradeoffs rather than simple more-is-better effects. For this dataset, Bulk was the clearest example. Moderate bulk was associated with stronger performance, while too little or too much bulk appeared less effective.
+
+### Statistical Significance
+
+To wrap up the analysis, I compared the strongest candidate features not just by the size of their estimated effects, but also by their statistical significance. This matters because a large coefficient by itself does not necessarily mean that a relationship is reliable. The p-value helps show whether the observed effect is strong enough relative to the noise in the data to be taken seriously.
+
+The figure below highlights the top two feature coefficients from the linear modeling stage. Of these, **Unique_Move_Types** stands out clearly. It has the largest positive standardized coefficient and remains statistically significant, with a p-value of about 0.005. This gives strong evidence that teams with a wider range of move types tended to achieve higher Ability Scores in the tournament.
+
 ![](Data/analysis/top2_coefficients.png){width="100%"}
 
+By contrast, **Bulk** shows a much smaller estimated linear effect and is not statistically significant in this form, with a p-value of about 0.425. This is an important reminder that not every useful feature appears as a strong straight-line relationship. Earlier in the polynomial regression, Bulk became much more meaningful once I allowed for a curved relationship, suggesting that its effect is nonlinear rather than purely linear.
+
+Taken together, these results help clarify the main findings of the analysis. **Unique_Move_Types** was the clearest and most consistent linear predictor of team success, while **Bulk** appeared to matter in a more complex way that was better captured by a quadratic model. More broadly, the statistical results suggest that strong Pokemon teams are not defined by one single trait, but by a combination of coverage, balance, and structural tradeoffs that interact with one another across the tournament field.
+
+## Conclusion
+
+This project used 262,800 simulated Pokemon battles to study trainer performance in a large round-robin tournament built from some of the strongest teams in *Pokemon Black 2* and *White 2*. What began as a ranking project turned into a broader data science study on what actually makes a team successful.
+
+Using the Bradley-Terry model, I was able to move beyond simple win-loss records and estimate a more meaningful measure of team strength based on the full set of pairwise matchups. From there, I used Elo-style scores to present the rankings in a more intuitive way, and then built a trainer-level dataset to explore how team characteristics related to tournament success.
+
+The analysis showed that there was no single feature that completely explained performance. Principal Component Analysis helped reveal broad differences in team structure, especially along defensive and offensive dimensions, but those components did not fully separate the strongest teams from the weakest ones. Linear regression showed that **Unique_Move_Types** was the clearest positive predictor of Ability Score, suggesting that broader move coverage was strongly associated with success. Polynomial regression then showed that **Bulk** mattered in a more complex way, where moderate bulk appeared more helpful than either too little or too much.
+
+Taken together, these results suggest that strong Pokemon teams are built through balance rather than extremes. Coverage matters. Bulk matters, but not infinitely. Offensive pressure matters too. The best teams seem to succeed not because they maximize one stat or one style, but because they combine multiple strengths in a way that holds up across many different matchups.
+
+For me, that is what made this project so interesting. It took something I already enjoyed, Pokemon, and turned it into a real data science workflow involving simulation, feature engineering, clustering, dimensionality reduction, regression, and interpretation. More than anything, this project showed me that data science is not just about finding who comes out on top. It is about asking why, testing those ideas carefully, and being willing to find more complicated answers than expected.
