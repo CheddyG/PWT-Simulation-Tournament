@@ -1,3 +1,7 @@
+project:
+  type: website
+  output-dir: docs
+
 title: "The Pokemon World Tournament Simulation Analysis"
 author: "Edgar Gonzalez Martinez"
 date: "2026-03-22"
