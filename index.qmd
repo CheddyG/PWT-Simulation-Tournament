@@ -13,7 +13,7 @@ That level of complexity makes Pokemon a good setting for simulation and data an
 
 This project uses [cRz-Shadows’ Pokemon Trainer Tournament Simulator](https://github.com/cRz-Shadows/Pokemon_Trainer_Tournament_Simulator), so huge thanks to them for making this possible. The simulator automates battles in a specified sequence, which makes it ideal for large-scale analysis. It is built on the Pokemon Showdown battle engine and uses pipelines and threading to speed up the simulation process.
 
-The basic setup is straightforward. The simulator takes two trainer teams, gives them equally matched heuristic-based AIs, runs the battle, and outputs the result as a `.txt` battle log.
+The basic setup is straightforward. The simulator takes two trainer teams, gives them equally matched heuristic-based AIs, runs the battle, and outputs the result as a .txt battle log.
 
 For this project, I simulated a 73-trainer round-robin tournament and ran each matchup 100 times. In other words, every trainer battled every other trainer a total of 100 times. That comes out to 262,800 total battles.
 
